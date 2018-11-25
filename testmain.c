@@ -100,15 +100,90 @@ void wobj_test()
 	printf(": wobj_test end\n");
 }
 
+void test_tmat_mul()
+{
+	tmat44 a;
+	tmat41 b,c;
+	
+	// a row 0
+	a.m[0][0] = 1;
+	a.m[0][1] = 2;
+	a.m[0][2] = 3;
+	a.m[0][3] = 4;
+
+	// a row 1
+	a.m[1][0] = 4;
+	a.m[1][1] = 2;
+	a.m[1][2] = 7;
+	a.m[1][3] = 3;
+
+	// a row 2
+	a.m[2][0] = 4;
+	a.m[2][1] = 1;
+	a.m[2][2] = 9;
+	a.m[2][3] = 0;
+
+	// a row 3
+	a.m[3][0] = 3;
+	a.m[3][1] = 4;
+	a.m[3][2] = 5;
+	a.m[3][3] = 6;
+
+ 
+	// b one column and 4 rows
+	b.m[0][0] = 3;
+	b.m[1][0] = 7;
+	b.m[2][0] = 1;
+	b.m[3][0] = 2;
+	
+	c = mul_tmat44_and_tmat41(a,b);
+	
+	printf("c=[ %f ; %f ; %f ; %f]\n", c.m[0][0], c.m[1][0], c.m[2][0], c.m[3][0]);
+	
+}
+
+void test_swap_vec()
+{
+	//void swap_ivec3d(tivec3d *a, tivec3d *b);
+	//void swap_ivec2d(tivec2d *a, tivec2d *b);
+
+	tivec3d a, b;
+	tivec2d c, d;
+	
+	a.x = 1; a.y = 2; a.z = 3;
+	b.x = 11; b.y = 12; b.z = 13;
+
+	printf("%d %d %d <-> %d %d %d\n", a.x, a.y, a.z, b.x, b.y, b.z);
+
+	swap_ivec3d( &a, &b);
+
+	printf("%d %d %d <-> %d %d %d\n", a.x, a.y, a.z, b.x, b.y, b.z);
+
+
+	printf("\n");
+
+	c.x = 100; c.y = 200;
+	d.x = 101; d.y = 102;
+
+
+	printf("%d %d <-> %d %d\n", c.x, c.y, d.x, d.y);
+
+	swap_ivec2d(&c, &d);
+
+	printf("%d %d <-> %d %d\n", c.x, c.y, d.x, d.y);	
+}
+
 int main(int argc, char *argv[])
 {
 
 	printf(": main\n");
 	
-	test_no01();
-	test_no02_save_to_tga();
-	test_no03_load_and_save_to_tga();
-	wobj_test();
+	//test_no01();
+	//test_no02_save_to_tga();
+	//test_no03_load_and_save_to_tga();
+	//wobj_test();
+	test_tmat_mul();
+	
 	
 	printf(": end of main\n");
 	
